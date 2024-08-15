@@ -3,7 +3,7 @@ import requests
 
 class TestBaiduGeocodingAPI(unittest.TestCase):
     BASE_URL = "http://api.map.baidu.com"
-    API_KEY = "hhZF9nkmezq3T2g26TPPu7ek2xdZoFPc"
+    API_KEY = "***"
 
     def test_geocoding_nuaa_address(self):
         endpoint = f"{self.BASE_URL}/geocoding/v3/"
@@ -54,6 +54,16 @@ class TestBaiduGeocodingAPI(unittest.TestCase):
         self.assertIn("address", data['content'])
         self.assertIn("point", data['content'])
         print(f"Location: {data['content']['address']}")
+
+    def test_search_invalid_key(self):
+        """测试使用无效API Key"""
+        params = {"address": "南京市江宁区将军大道29号", "output": "json", "ak": "invalid_api_key"}
+        base_url = "http://api.map.baidu.com/place/v2/search"
+        response = requests.get(base_url, params=params)
+        self.assertEqual(response.status_code, 200)  # 百度API通常返回200状态码,APP不存在，AK有误请检查再重试   根据请求的ak，找不到对应的APP
+        data = response.json()
+        print(data["status"])
+        self.assertEqual(data["status"], 200)
 
 if __name__ == "__main__":
     unittest.main()
