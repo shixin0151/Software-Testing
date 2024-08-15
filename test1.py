@@ -42,7 +42,7 @@ class TestBaiduGeocodingAPI(unittest.TestCase):
     def test_ip_location_near_nuaa(self):
         endpoint = f"{self.BASE_URL}/location/ip"
         params = {
-            "ip": "218.94.69.34",  # 假设这个IP地址接近南京航空航天大学
+            "ip": "218.94.69.34",
             "ak": self.API_KEY,
             "coor": "bd09ll"
         }
