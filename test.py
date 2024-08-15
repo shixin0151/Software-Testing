@@ -3,7 +3,7 @@ import requests
 
 class TestBaiduGeocodingAPI(unittest.TestCase):
     BASE_URL = "http://api.map.baidu.com"
-    API_KEY = "VPZOC3ftpvigaIbEuZCynhCthA21qyun"
+    API_KEY = "***"
 
     def test_geocoding_nuaa_address(self):
         endpoint = f"{self.BASE_URL}/geocoding/v3/"
